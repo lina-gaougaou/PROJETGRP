@@ -2,16 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./login.css">
 </head>
 <body>
-    
-
  <div class="login-container">
     <h2>Connexion</h2>
-    <form>
+    <form id="loginForm">
       <div class="input-group">
         <input type="text" required placeholder=" " id="username">
         <label for="username">Nom d'utilisateur</label>
@@ -24,8 +22,30 @@
       <div class="signup-link">
         Pas encore de compte ? <a href="#">S'inscrire</a>
       </div>
+      <div id="message" style="margin-top:15px;color:#ffcccc;"></div>
     </form>
   </div>
 
+  <script>
+    //
+    const form = document.getElementById('loginForm');
+    const messageDiv = document.getElementById('message');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); 
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      if(username === '' || password === '') {
+        messageDiv.textContent = 'Veuillez remplir tous les champs !';
+        messageDiv.style.color = '#ff4d4d';
+      } else {
+        messageDiv.textContent = 'Connexion réussie !';
+        messageDiv.style.color = '#6ae7b3';
+        // un vrai appel API pour vérifier le login
+      }
+    });
+  </script>
 </body>
 </html>
