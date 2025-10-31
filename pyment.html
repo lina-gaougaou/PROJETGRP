@@ -2,112 +2,77 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Paiement</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paiement - WildTrip</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="wrap" id="main">
-    <section class="panel" aria-labelledby="title">
-      <div class="brand">
-        <div class="logo">P</div>
-        <div>
-          <h1 id="title">Paiement sécurisé</h1>
-          <p class="lead">Entrez les détails de votre carte pour finaliser le paiement.</p>
-        </div>
-      </div>
+  <header class="header">
+    <h1 class="logo">Wild<span>Trip🌲</span></h1>
+  </header>
 
-      <form id="payment-form" novalidate>
-        <div>
+  <main class="container">
+    <section class="payment-card">
+      <h2>Réservation de votre aventure 🌿</h2>
+      <p class="subtitle">Complétez les détails pour confirmer votre voyage éco-responsable.</p>
+
+      <form id="payment-form">
+        <div class="input-group">
           <label for="name">Nom sur la carte</label>
-          <input id="name" class="field" type="text" placeholder="Marie Dupont" required>
-          <div id="name-error" class="error"></div>
+          <input id="name" type="text" placeholder="Amina El Fassi" required>
         </div>
 
-        <div>
+        <div class="input-group">
           <label for="card">Numéro de carte</label>
-          <input id="card" class="field" type="text" placeholder="4242 4242 4242 4242" maxlength="23" required>
-          <div id="card-error" class="error"></div>
+          <input id="card" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" required>
         </div>
 
         <div class="row">
-          <div style="flex:1">
-            <label for="expiry">Date (MM/AA)</label>
-            <input id="expiry" class="field" type="text" placeholder="08/28" maxlength="5" required>
-            <div id="expiry-error" class="error"></div>
+          <div class="input-group">
+            <label for="expiry">Expiration</label>
+            <input id="expiry" type="text" placeholder="MM/AA" maxlength="5" required>
           </div>
-          <div style="width:120px">
+          <div class="input-group">
             <label for="cvc">CVC</label>
-            <input id="cvc" class="field" type="text" placeholder="123" maxlength="4" required>
-            <div id="cvc-error" class="error"></div>
+            <input id="cvc" type="text" placeholder="123" maxlength="4" required>
           </div>
         </div>
 
-        <div>
-          <label for="email">E-mail (reçu)</label>
-          <input id="email" class="field" type="email" placeholder="moi@exemple.com">
-          <div id="email-error" class="error"></div>
+        <div class="input-group">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" placeholder="moi@exemple.com" required>
         </div>
 
-        <div class="muted-row">
-          <small class="small">Montant</small>
-          <div class="pay-meta">
-            <div class="tiny">EUR</div>
-            <input id="amount" class="field" type="number" value="29.99" style="width:130px;text-align:right">
-          </div>
+        <div class="summary">
+          <p>Destination : <strong>Atlas Mountains</strong></p>
+          <p>Date de départ : <strong>10 Mai 2026</strong></p>
+          <p>Montant total : <strong>459.99 €</strong></p>
         </div>
 
-        <div style="display:flex;gap:10px;align-items:center;margin-top:6px">
-          <input id="save" type="checkbox">
-          <label for="save" class="small">Sauvegarder cette carte</label>
-        </div>
-
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
-          <div class="small">Méthode : <strong class="tiny">Carte</strong></div>
-          <button type="submit" class="btn" id="pay-btn">Payer →</button>
-        </div>
-
-        <div id="global-error" class="error"></div>
+        <button type="submit" class="btn">🌳 Payer & Confirmer</button>
       </form>
-
-      <footer>
-        <small>Test mode — cette page ne traite pas de paiements réels.</small>
-      </footer>
     </section>
 
-    <aside class="preview">
-      <div class="card-visual">
-        <div class="card-top">
-          <div class="chip"></div>
-          <div class="tiny">VISA • ****</div>
-        </div>
-        <div class="card-number" id="visual-number">4242 4242 4242 4242</div>
-        <div class="card-bottom">
-          <div>
-            <div class="tiny">Nom</div>
-            <div id="visual-name">MARIE DUPONT</div>
-          </div>
-          <div>
-            <div class="tiny">Exp.</div>
-            <div id="visual-exp">08/28</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="receipt">
-        <div><strong>Montant</strong><span id="visual-amount">29.99 EUR</span></div>
-        <div style="text-align:right;margin-top:10px"><small class="tiny">Securisé par TLS</small></div>
+    <aside class="trip-preview">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="forest trip" class="preview-img">
+      <div class="trip-info">
+        <h3>Randonnée au cœur de l’Atlas</h3>
+        <p>3 jours d’immersion dans la nature, hébergement écologique inclus 🌲.</p>
       </div>
     </aside>
   </main>
 
   <div id="modal" class="modal">
     <div class="modal-card">
-      <h3>Paiement réussi !</h3>
-      <p class="small">Merci — votre paiement de <strong id="modal-amount">29.99 EUR</strong> a été traité (simulation).</p>
-      <button class="btn" id="close-modal">OK</button>
+      <h3>🎉 Paiement validé !</h3>
+      <p>Bienvenue dans l’aventure WildTrip. Préparez-vous à respirer l’air pur !</p>
+      <button id="close-modal" class="btn">Fermer</button>
     </div>
   </div>
+
+  <footer class="footer">
+    <p>© 2025 WildTrip. Explorez sans trace 🌍</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
