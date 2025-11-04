@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./breath.css">
+    
 </head>
 <body>
      <header class="head">
@@ -14,6 +15,14 @@
         </div>
 
         <div class="right">
+
+            <button id="play-music" class="btn-music">🎵 Activer la musique</button>
+            <audio id="bg-music" loop>
+            <source src="assets/1 Hour Rain, Thunder and Fireplace Sounds in a cozy Hut Ambience - Sounds for Sleep, Relax and Study.mp3" type="audio/mpeg">
+            </audio>
+
+
+            
             <div class="theme">
                 <img src="assets/orage.png" alt="flag">
             </div>
@@ -27,7 +36,33 @@
             <button class="btn sign">Sign up</button>
         </div>
     </header>
-    
+    <div class="first">
+
+        <h1>Breath</h1>
+        <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search a place ...">
+        </div>
+        <div class="marquee">
+            <div class="marquee-content">
+                Adventure • Nature • Freedom • Forests • Mountains • Rivers • Wild • Explore • Serenity • Journey • Fresh Air • Discovery • Wanderlust • Peace • Campfire • Sunshine • Trails • Lakes • Wildlife •
+            </div>
+        </div>
+    </div>
+
+    <div class="second">
+
+       <h1 class="quote">
+        Forest is for <span style="color: rgb(30, 97, 83);">rest</span>
+        </h1>
+
+
+        <h1 class="join">
+            Your next story begins with a single trip
+        </h1>
+
+    </div>
+    <script src="./breath.js" defer></script>
+
 </body>
 </html>
 

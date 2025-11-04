@@ -96,3 +96,109 @@ body {
     transform: translateY(-3px);
     box-shadow: 0 4px 12px rgba(0,120,255,0.3);
 }
+
+
+.first {
+    height: 100vh;
+    background-image: url("assets/travel2.jpg"); 
+    background-size: cover;     
+    background-position: center; 
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+}
+.first h1{
+
+    font-size: 100px;
+}
+
+
+
+
+
+
+.btn-music {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #0b5d3e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-music:hover {
+  background: white;
+  color: #9ff9dc;
+  border: 2px solid #000000;
+}
+
+
+
+
+
+
+.search-container {
+    position: relative;
+}
+
+.search-bar {
+    width: 800px;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.5); 
+    background-color: rgba(255, 255, 255, 0.3); 
+    border-radius: 25px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+
+.search-bar:focus {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-color: rgba(255, 255, 255, 1);
+}
+
+.search-bar::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.second .quote{
+    text-align: center;
+    padding-top: 80px;
+}
+
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;
+  background: inherit; /* fond léger nature */
+  color: #eef4f3; /* vert forêt */
+  font-size: 1.5em;
+  padding: 10px 0;
+
+   position: relative;
+  top: 220px; /* décale verticalement vers le bas */
+ 
+}
+
+.marquee-content {
+  display: inline-block;
+  padding-left: 100%;
+  animation: marquee 26s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
