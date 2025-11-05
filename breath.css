@@ -455,3 +455,177 @@ footer {
     #map { width:90%; height:550px; margin:30px auto; border-radius:15px; border:4px solid #66bb6a; }
 
 
+
+
+
+    
+.reviews-section {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.reviews-section h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #2b2b2b;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #777;
+    margin-bottom: 40px;
+}
+
+.reviews-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.review-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    padding: 25px;
+    transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.profile img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.user-info h3 {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #222;
+}
+
+.user-info .location {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.stars {
+    color: #FFD700;
+    font-size: 1rem;
+}
+
+.comment {
+    font-style: italic;
+    color: #555;
+    text-align: left;
+}
+
+
+
+
+
+
+
+
+
+/* ===== FOOTER SECTION ===== */
+.footer {
+    background-color: #111;
+    color: #ddd;
+    padding: 60px 20px 20px;
+    margin-top: 80px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Brand / Description */
+.footer-brand h2 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.footer-brand p {
+    font-size: 0.95rem;
+    color: #aaa;
+    line-height: 1.7;
+}
+
+/* Quick Links */
+.footer-links h3,
+.footer-social h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #00c896; /* fresh forest green accent */
+}
+
+/* Social Media Icons */
+.social-icons a {
+    color: #aaa;
+    font-size: 1.4rem;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #00c896;
+}
+
+/* Bottom Line */
+.footer-bottom {
+    border-top: 1px solid #222;
+    margin-top: 40px;
+    text-align: center;
+    padding-top: 15px;
+}
+
+.footer-bottom p {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .footer {
+        text-align: center;
+    }
+    .social-icons a {
+        margin-right: 10px;
+    }
+}
