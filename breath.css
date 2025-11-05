@@ -82,7 +82,6 @@ body {
     border: 2px solid #0d5a3e;
 }
 
-/* Sign up button */
 .btn.sign {
     background: #83bdac;
     color: white;
@@ -174,6 +173,7 @@ body {
 .second .quote{
     text-align: center;
     padding-top: 80px;
+    color: white;
 }
 
 
@@ -182,13 +182,13 @@ body {
   overflow: hidden;
   white-space: nowrap;
   box-sizing: border-box;
-  background: inherit; /* fond léger nature */
-  color: #eef4f3; /* vert forêt */
+  background: inherit; 
+  color: #eef4f3; 
   font-size: 1.5em;
   padding: 10px 0;
 
    position: relative;
-  top: 220px; /* décale verticalement vers le bas */
+  top: 220px; 
  
 }
 
@@ -202,3 +202,256 @@ body {
   from { transform: translateX(0); }
   to { transform: translateX(-100%); }
 }
+
+.nature {
+  font-size: 1.6em;
+  text-align: center;
+  color: #ffffff; /* vert forêt */
+  background: linear-gradient(90deg, #ffffff, #ffffff); /* dégradé vert clair */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(174, 255, 201, 0.6);
+  font-family: "Poppins", sans-serif;
+  margin-top: 60px;
+}
+
+
+
+.destination-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-bottom: 50px;
+    }
+
+    .destination-card {
+        background: #ffffff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+    .destination-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+
+    .destination-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .destination-card:hover img {
+        transform: scale(1.05);
+    }
+
+    .destination-content {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .destination-content h2 {
+        font-size: 1.5em;
+        color: #2e8b57;
+        margin-bottom: 10px;
+    }
+
+    .destination-content p {
+        color: #555;
+        font-size: 1em;
+        margin-bottom: 20px;
+    }
+
+    .travel-btn {
+        display: inline-block;
+        background: linear-gradient(45deg, #56ab2f, #a8e063);
+        color: white;
+        font-weight: bold;
+        padding: 12px 25px;
+        border: none;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none;
+    }
+
+    .travel-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(86,171,47,0.5);
+    }
+
+
+    .destination-card {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.8s forwards;
+    }
+
+    .destination-card:nth-child(1) { animation-delay: 0.1s; }
+    .destination-card:nth-child(2) { animation-delay: 0.2s; }
+    .destination-card:nth-child(3) { animation-delay: 0.3s; }
+    .destination-card:nth-child(4) { animation-delay: 0.4s; }
+    .destination-card:nth-child(5) { animation-delay: 0.5s; }
+    .destination-card:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+
+
+.plant-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.destination-card:hover .plant-overlay {
+    opacity: 1;
+}
+
+.plant-overlay span {
+    position: absolute;
+    font-size: 1.5em;
+    animation: floatLeaves 4s linear infinite;
+}
+
+.plant-overlay span:nth-child(1) {
+    top: -40px;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.plant-overlay span:nth-child(2) {
+    top: -50px;
+    left: 40%;
+    animation-delay: 1s;
+    font-size: 2em;
+}
+
+.plant-overlay span:nth-child(3) {
+    top: -30px;
+    left: 70%;
+    animation-delay: 2s;
+    font-size: 1.8em;
+}
+
+@keyframes floatLeaves {
+    0% { transform: translate(0,0) rotate(0deg); opacity: 0.8; }
+    50% { transform: translate(30px,100px) rotate(180deg); opacity: 1; }
+    100% { transform: translate(-10px,200px) rotate(360deg); opacity: 0; }
+}
+.join{
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    color: #a8e063;
+}
+
+
+.second {
+    
+    border-radius: 20px;
+    background: linear-gradient(270deg, #092b1b, #375346, #6eb563, #77cfad);
+    background-size: 800% 800%; /* important pour l'animation */
+    animation: gradientMove 10s ease infinite;
+
+}
+
+/* Animation du gradient */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+
+.road {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+    background: #444;
+    box-shadow: inset 0 10px #222;
+  }
+
+  .bus {
+    position: absolute;
+    bottom: 150px;
+    right: -200px;
+    font-size: 5em;
+    animation: moveBus 8s linear infinite;
+  }
+
+  @keyframes moveBus {
+    0% { right: -200px; transform: scaleX(1); }
+    50% { right: 100%; transform: scaleX(1); }
+    51% { transform: scaleX(-1); } /* tourne le bus pour repartir */
+    100% { right: -200px; transform: scaleX(-1); }
+  }
+
+
+
+
+
+
+
+
+
+  #map {
+  height: 550px;
+  width: 90%;
+  margin: 40px auto;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border: 5px solid #81c784;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #1b5e20;
+  color: #c8e6c9;
+  font-size: 0.9em;
+}
+
+/* Animation douce au chargement */
+#map {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+ 
+    h1 { text-align:center; color:#2e7d32; margin-top:20px; }
+    #map { width:90%; height:550px; margin:30px auto; border-radius:15px; border:4px solid #66bb6a; }
+
+

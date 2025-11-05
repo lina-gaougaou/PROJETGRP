@@ -39,6 +39,7 @@
     <div class="first">
 
         <h1>Breath</h1>
+        <p class="nature">🌿Dreaming of a nature escape? Find your next destination now 🌿</p>
         <div class="search-container">
         <input type="text" class="search-bar" placeholder="Search a place ...">
         </div>
@@ -46,6 +47,8 @@
             <div class="marquee-content">
                 Adventure • Nature • Freedom • Forests • Mountains • Rivers • Wild • Explore • Serenity • Journey • Fresh Air • Discovery • Wanderlust • Peace • Campfire • Sunshine • Trails • Lakes • Wildlife •
             </div>
+            <div class="road"></div>
+            <div class="bus">🚌</div>
         </div>
     </div>
 
@@ -57,10 +60,152 @@
 
 
         <h1 class="join">
-            Your next story begins with a single trip
+           Adventure is calling — will you answer?  🔥
         </h1>
+        
+
+    <div class="destination-container">
+
+    <div class="destination-card">
+
+        <img src="assets/fire2.jpg" alt="Mountains">
+        <div class="plant-overlay"></div>
+        <div class="destination-content">
+            <h2>Majestic Mountains</h2>
+            <p>6/9 people signed up — 3 spots left!</p>
+            <a href="#" class="travel-btn">Travel</a>
+        </div>
+    </div>
+
+    <div class="destination-card">
+            <div class="plant-overlay">
+        <span>🍃</span>
+        <span>🌿</span>
+        <span>🍀</span>
+        </div>
+        <img src="assets/travel5.jpg" alt="Beach">
+        <div class="plant-overlay"></div>
+        <div class="destination-content">
+            <h2>Sunny Beach</h2>
+            <p>4/6 people signed up — 2 spots left!</p>
+            <a href="#" class="travel-btn">Travel</a>
+        </div>
+    </div>
+
+    <div class="destination-card">
+        <img src="assets/travel6.jpg" alt="Forest">
+        <div class="plant-overlay"></div>
+        <div class="destination-content">
+            <h2>Enchanted Forest</h2>
+            <p>3/5 people signed up — 2 spots left!</p>
+            <a href="#" class="travel-btn">Travel</a>
+        </div>
+    </div>
+
+    <div class="destination-card">
+        <img src="assets/travel4.jpg" alt="River">
+        <div class="plant-overlay"></div>
+        <div class="destination-content">
+            <h2>Calm River</h2>
+            <p>5/8 people signed up — 3 spots left!</p>
+            <a href="#" class="travel-btn">Travel</a>
+        </div>
+    </div>
+
+    <div class="destination-card">
+        <div class="plant-overlay">
+    <span>🍃</span>
+    <span>🌿</span>
+    <span>🍀</span>
+</div>
+        <img src="assets/travel3.jpg" alt="Desert">
+        <div class="plant-overlay"></div>
+        <div class="destination-content">
+            <h2>Golden Desert</h2>
+            <p>2/6 people signed up — 4 spots left!</p>
+            <a href="#" class="travel-btn">Travel</a>
+        </div>
+    </div>
+
+    <div class="destination-card">
+        <img src="assets/travel8.jpg" alt="Lake">
+        <div class="plant-overlay"></div>
+        <div class="destination-content">
+            <h2>Peaceful Lake</h2>
+            <p>7/9 people signed up — 2 spots left!</p>
+            <a href="#" class="travel-btn">Travel</a>
+        </div>
+    </div>
+
+
 
     </div>
+    </div>
+
+    <div class="third">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+    body { margin:0; font-family: 'Poppins', sans-serif; background:#e8f5e9; }
+    h1 { text-align:center; color:#2e7d32; margin-top:20px; }
+    #map { width:90%; height:550px; margin:30px auto; border-radius:15px; border:4px solid #66bb6a; }
+</style>
+</head>
+<body>
+
+<h1>🌿 Forests and Natural Areas of Morocco</h1>
+<div id="map"></div>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    const map = L.map("map").setView([31.7917, -7.0926], 6);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 18,
+        attribution: "© OpenStreetMap"
+    }).addTo(map);
+
+    const redIcon = L.icon({
+        iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png",
+        shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+    });
+
+    const forests = [
+        {
+            name: "🌲 Forêt d'Ifrane",
+            coords: [33.5333, -5.1167],
+            url: "https://example.com/ifrance-photos"
+        },
+        {
+            name: "🌳 Forêt de la Maâmora",
+            coords: [34.05, -6.5],
+            url: "https://www.visitrabat.com/en/lieux/foret-de-la-maamora/"
+        }
+    ];
+
+    forests.forEach(forest => {
+        const popupContent = `
+            <div style="text-align:center;">
+                <b>${forest.name}</b><br>
+                <a href="${forest.url}" target="_blank" style="text-decoration:none; color:#1b5e20; font-weight:bold;">Voir les photos 📸</a>
+            </div>
+        `;
+        L.marker(forest.coords, { icon: redIcon })
+            .addTo(map)
+            .bindPopup(popupContent);
+    });
+</script>
+
+    </div>
+
+
+
+    
     <script src="./breath.js" defer></script>
 
 </body>
