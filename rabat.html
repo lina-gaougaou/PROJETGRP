@@ -118,8 +118,9 @@
       transition: all 0.3s ease;
     }
     
-    #soundBtn:hover { background:#1687a7; transform:scale(1.05);}
-    
+    #soundBtn:hover { 
+      background: #276678; transform:scale(1.05);}
+   
   </style>
 </head>
 <body>
@@ -154,7 +155,28 @@
 
   <button id="scrollTopBtn">↑</button>
   <button id="soundBtn">🔊 Neige On/Off</button>
-
+<a href="chat.html">
+  <button 
+    style="
+      position: fixed;
+      bottom: 130px; /* juste en dessous du bouton son */
+      left: 30px;    /* même position horizontale que le bouton son */
+      background: #276678;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: all 0.3s ease;
+    "
+    onmouseover="this.style.background='#1687a7';"
+    onmouseout="this.style.background='#276678';"
+  >
+    ❓Question au guide
+  </button>
+</a>
   <audio id="snowSound" loop>
     <source src="audio/snow.mp3" type="audio/mpeg">
   </audio>
@@ -181,10 +203,9 @@
     onmouseover="this.style.background='#1687a7';"
     onmouseout="this.style.background='#276678';"
   >
-    🗺 Retour à la Map
+    🗺Retour à la Map
   </button>
 </a>
-
 
   <script>
     // Apparition fluide
