@@ -36,5 +36,57 @@
       <p class="login-link">Déjà un compte ? <a href="#">Se connecter</a></p>
     </form>
   </div>
+
+
+  <script type="module">
+  // === Imports Firebase ===
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
+
+  // === Configuration Firebase ===
+  const firebaseConfig = {
+    apiKey: "AIzaSyD0-qES65abpNgnrIKIlv8J3DfLXOMHE6g",
+    authDomain: "breath-f1f0c.firebaseapp.com",
+    projectId: "breath-f1f0c",
+    storageBucket: "breath-f1f0c.firebasestorage.app",
+    messagingSenderId: "822609264741",
+    appId: "1:822609264741:web:249d2c48dbfbb57fef068c",
+    measurementId: "G-ECVQVNNB1L"
+  };
+
+  // === Initialiser Firebase ===
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // === Gestion du formulaire ===
+  const form = document.querySelector(".signup-form");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const confirmPassword = document.getElementById("confirm-password").value.trim();
+
+    if (password !== confirmPassword) {
+      alert("❌ Les mots de passe ne correspondent pas.");
+      return;
+    }
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      console.log("✅ Compte créé :", user);
+
+      alert("🎉 Compte créé avec succès !");
+      // Redirige vers la page de connexion
+      window.location.href = "login.html";
+    } catch (error) {
+      console.error(error);
+      alert("❌ Erreur : " + error.message);
+    }
+  });
+</script>
+
 </body>
 </html>
