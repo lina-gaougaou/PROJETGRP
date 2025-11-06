@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1740&q=80') 
+    no-repeat center center/cover;
+  color: #e0f2e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  backdrop-filter: brightness(0.6);
+}
+
+.chat-container {
+  background: rgba(10, 25, 15, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0, 100, 0, 0.6);
+  width: 420px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #14532d;
+}
+
+header {
+  background: linear-gradient(90deg, #064e3b, #14532d);
+  padding: 20px;
+  text-align: center;
+  color: #d1fae5;
+}
+
+header h1 {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+header p {
+  font-size: 0.85rem;
+  color: #a7f3d0;
+}
+
+.chat-box {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-message, .bot-message {
+  padding: 12px 15px;
+  border-radius: 15px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.user-message {
+  background: #14532d;
+  align-self: flex-end;
+  color: #f0fdf4;
+}
+
+.bot-message {
+  background: #1b2b1f;
+  color: #d1fae5;
+  align-self: flex-start;
+  border: 1px solid #14532d;
+}
+
+.input-area {
+  display: flex;
+  padding: 10px;
+  background: #0d1f14;
+  border-top: 1px solid #1f3b26;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #1b2b1f;
+  color: #e0f2e9;
+  outline: none;
+}
+
+button {
+  background: linear-gradient(90deg, #16a34a, #065f46);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-left: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #22c55e, #15803d);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #14532d;
+  border-radius: 5px;
+}
