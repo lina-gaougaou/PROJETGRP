@@ -39,11 +39,11 @@
 
 
   <script type="module">
-  // === Imports Firebase ===
+ 
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-app.js";
   import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.5.0/firebase-auth.js";
 
-  // === Configuration Firebase ===
+
   const firebaseConfig = {
     apiKey: "AIzaSyD0-qES65abpNgnrIKIlv8J3DfLXOMHE6g",
     authDomain: "breath-f1f0c.firebaseapp.com",
@@ -54,11 +54,11 @@
     measurementId: "G-ECVQVNNB1L"
   };
 
-  // === Initialiser Firebase ===
+ 
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  // === Gestion du formulaire ===
+
   const form = document.querySelector(".signup-form");
 
   form.addEventListener("submit", async (e) => {
@@ -79,8 +79,8 @@
       console.log("✅ Compte créé :", user);
 
       alert("🎉 Compte créé avec succès !");
-      // Redirige vers la page de connexion
-      window.location.href = "login.html";
+      
+      window.location.href = "after.html";
     } catch (error) {
       console.error(error);
       alert("❌ Erreur : " + error.message);

@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", function() {
   button.addEventListener("click", function() {
     if (music.paused) {
       music.play();
-      button.textContent = "🔇Stop the music";
+      button.textContent = "🔇mute the sound";
     } else {
       music.pause();
-      button.textContent = "🎵 Play the music";
+      button.textContent = "🎵 Play the sound";
     }
   });
 });

@@ -112,6 +112,7 @@ body {
 }
 .first h1{
 
+    color: white;
     font-size: 100px;
 }
 
@@ -311,47 +312,9 @@ body {
 
 
 
-.plant-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 300px;
-    pointer-events: none;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
 
-.destination-card:hover .plant-overlay {
-    opacity: 1;
-}
 
-.plant-overlay span {
-    position: absolute;
-    font-size: 1.5em;
-    animation: floatLeaves 4s linear infinite;
-}
 
-.plant-overlay span:nth-child(1) {
-    top: -40px;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.plant-overlay span:nth-child(2) {
-    top: -50px;
-    left: 40%;
-    animation-delay: 1s;
-    font-size: 2em;
-}
-
-.plant-overlay span:nth-child(3) {
-    top: -30px;
-    left: 70%;
-    animation-delay: 2s;
-    font-size: 1.8em;
-}
 
 @keyframes floatLeaves {
     0% { transform: translate(0,0) rotate(0deg); opacity: 0.8; }

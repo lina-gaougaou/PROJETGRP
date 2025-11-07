@@ -1,13 +1,12 @@
-// Initialiser la carte centrée sur le Maroc
+
 const map = L.map('map').setView([31.7917, -7.0926], 6);
 
-// Ajouter le fond de carte (OpenStreetMap)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
   attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// Ajouter des marqueurs avec popups
+
 const destinations = [
   {
     coords: [33.5333, -5.1167],
