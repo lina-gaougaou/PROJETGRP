@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voyage à Ifrane</title>
+  <link rel="stylesheet" href="Local.css">
+</head>
+<body>
+
+  <div class="container" id="card">
+    <div class="header"><h1>Voyage à Ifrane</h1></div>
+    <div class="content">
+      <img src="img/c.jpg" alt="Ifrane" class="city-image">
+      <div class="description">
+        <p>
+          Ifrane, la <strong>perle du Moyen Atlas</strong>, enchante par ses forêts de cèdres, ses lacs cristallins
+          et ses rues paisibles. Nous avons exploré ses montagnes, admiré la neige tombante et savouré chaque instant
+          de ce voyage unique.
+        </p>
+        <a href="#section2" style="text-decoration:none;">
+          <button class="discover-btn">Découvrir les lieux</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="section2">
+    <h2>Les lieux que nous avons visités 🌲</h2>
+    <div class="gallery">
+      <img src="img/f.jpg" alt="Forêt de cèdres">
+      <img src="img/d.jpg" alt="Lac d’Ifrane">
+      <img src="img/b.jpg" alt="Ville d’Ifrane">
+    </div>
+  </div>
+
+  <button id="scrollTopBtn">↑</button>
+  <button id="soundBtn">🔊 Neige On/Off</button>
+
+  <a href="chat.html">
+    <button class="guide-btn">❓Question au guide</button>
+  </a>
+
+  <audio id="snowSound" loop>
+    <source src="audio/snow.mp3" type="audio/mpeg">
+  </audio>
+
+  <a href="map.html">
+    <button class="map-btn">🗺Retour à la Map</button>
+  </a>
+
+  <script src="Local.js"></script>
+</body>
+</html>
