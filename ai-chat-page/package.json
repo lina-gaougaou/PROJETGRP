@@ -1,0 +1,19 @@
+{
+  "name": "projetgrp",
+  "version": "1.0.0",
+  "description": "Projet web interactif (chat, map, voyages...)",
+  "main": "chat.html",
+  "scripts": {
+    "start": "npx serve"
+  },
+  "author": "Marybery",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "node-fetch": "^2.7.0"
+  },
+  "keywords": [],
+  "type": "commonjs"
+}
