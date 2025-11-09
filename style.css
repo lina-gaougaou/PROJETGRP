@@ -4,9 +4,9 @@
   --forest-green: #2a5934;
   --moss: #3c7a47;
   --leaf: #65a765;
-  --sand: #f3efe3;
+  --sand: #f3efe3c3;
   --text-dark: #1e2d24;
-  --white: #fff;
+  --white: #ffffffa6;
   --shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   --radius: 14px;
 }
@@ -76,7 +76,7 @@ input {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 15px;
-  background: #fffefb;
+  background: #fffefbab;
 }
 
 input:focus {
@@ -90,7 +90,7 @@ input:focus {
 }
 
 .summary {
-  background: #eaf8ec;
+  background: #eaf8ec97;
   padding: 15px;
   border-radius: 10px;
   margin-top: 15px;
@@ -115,7 +115,7 @@ input:focus {
 }
 
 .trip-preview {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.571);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;

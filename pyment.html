@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paiement - WildTrip</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1 class="logo"><span>Bre</span>ath<span>🌲</span></h1>
+  </header>
+
+  <main class="container">
+    <section class="payment-card">
+      <h2>Réservation de votre aventure 🌿</h2>
+      <p class="subtitle">Complétez les détails pour confirmer votre voyage éco-responsable.</p>
+
+      <form id="payment-form">
+        <div class="input-group">
+          <label for="name">Nom sur la carte</label>
+          <input id="name" type="text" placeholder="mabrouki maryem" required>
+        </div>
+
+        <div class="input-group">
+          <label for="card">Numéro de carte</label>
+          <input id="card" type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="19" required>
+        </div>
+
+        <div class="row">
+          <div class="input-group">
+            <label for="expiry">Expiration</label>
+            <input id="expiry" type="text" placeholder="MM/AA" maxlength="5" required>
+          </div>
+          <div class="input-group">
+            <label for="cvc">CVC</label>
+            <input id="cvc" type="text" placeholder="123" maxlength="4" required>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" placeholder="moi@exemple.com" required>
+        </div>
+
+        <div class="summary">
+          <p>Destination : <strong>Toubqal</strong></p>
+          <p>Date de départ : <strong>10 Mai 2026</strong></p>
+          <p>Montant total : <strong>459.99 €</strong></p>
+        </div>
+
+        <button type="submit" class="btn">🌳 Payer & Confirmer</button>
+      </form>
+    </section>
+
+    <aside class="trip-preview">
+      <img src="img/k.webp" alt="forest trip" class="preview-img">
+      <div class="trip-info">
+        <h3>TOUBKAL – 3 jours d’aventure en pleine nature</h3>
+        <p>Partez pour une expérience unique de 3 jours au cœur du massif du Toubqal, le point culminant du Haut Atlas. Vous serez immergés dans des paysages à couper le souffle, entre vallées verdoyantes, sommets majestueux et cours d’eau cristallins. L’hébergement se fait dans des lodges écologiques, respectueux de l’environnement, offrant confort et authenticité.
+Pendant ce séjour, vous pourrez randonner, observer la faune et la flore locales, et profiter de moments de détente au grand air. Une aventure parfaite pour se reconnecter avec la nature et créer des souvenirs inoubliables. 🌲✨</p>
+        <script src="https://cdn.chatbase.co/widget.js" id="chatbase" data-chatbot-id="TON_ID_CHATBOT"></script>
+
+      </div>
+    </aside>
+  </main>
+
+  <div id="modal" class="modal">
+    <div class="modal-card">
+      <h3>🎉 Paiement validé !</h3>
+      <p>Bienvenue dans l’aventure WildTrip. Préparez-vous à respirer l’air pur !</p>
+      <button id="close-modal" class="btn">Fermer</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>© 2025 Breath. Explorez sans trace 🌍</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
