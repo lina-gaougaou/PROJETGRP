@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Breath — Gazona (Assistant IA)</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+  /* ===========================
+     BASE / THEME (Jungle - Breath)
+     =========================== */
+  :root{
+    --bg-start: #052e1f;
+    --bg-end: #0b3f2b;
+    --accent: #16a34a;
+    --light: #d1fae5;
+    --muted: #a7f3d0;
+    --glass: rgba(10,25,15,0.8);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1800&q=80') center/cover fixed no-repeat;
+    color:var(--light);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+
+  /* ===========================
+     MAIN CARD
+     =========================== */
+  .chat-app{
+    width:100%;
+    max-width:980px;
+    height:85vh;
+    background: linear-gradient(135deg, rgba(6,78,59,0.92), rgba(10,25,15,0.9));
+    border-radius:18px;
+    display:grid;
+    grid-template-columns: 360px 1fr;
+    gap:18px;
+    padding:18px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    border:1px solid rgba(20,83,45,0.35);
+  }
+
+  /* Left column: branding + menu */
+  .sidebar{
+    background: rgba(8,30,22,0.7);
+    border-radius:12px;
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .brand{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .logo{
+    width:56px;
+    height:56px;
+    border-radius:12px;
+    display:grid;
+    place-items:center;
+    background:linear-gradient(135deg,var(--accent),#10b981);
+    color:white;
+    font-weight:700;
+    font-size:18px;
+    box-shadow:0 6px 18px rgba(16,78,38,0.22);
+  }
+  .brand h2{margin:0;font-size:1.05rem}
+  .brand p{margin:0;font-size:0.85rem;color:var(--muted);font-weight:300}
+
+  .intro{
+    font-size:0.95rem;
+    color:var(--light);
+    padding:8px;
+    line-height:1.3;
+  }
+
+  /* suggestion chips */
+  .chips{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .chip{
+    background: rgba(20,50,40,0.5);
+    border: 1px solid rgba(20,83,45,0.28);
+    color:var(--light);
+    padding:8px 10px;
+    border-radius:999px;
+    font-weight:600;
+    cursor:pointer;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .chip:hover{transform:translateY(-3px); box-shadow:0 8px 18px rgba(16,78,38,0.18)}
+
+  /* menu list */
+  .menu{
+    margin-top:6px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .menu-btn{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    padding:10px 12px;
+    border-radius:10px;
+    background:rgba(10,25,20,0.6);
+    border:1px solid rgba(20,83,45,0.25);
+    cursor:pointer;
+    color:var(--light);
+    font-weight:600;
+  }
+  .menu-btn:hover{transform:translateX(4px)}
+
+  /* robot / background animation (left) */
+  .robot-wrap{
+    position:absolute;
+    right:-40px;
+    bottom:-20px;
+    width:160px;
+    height:160px;
+    opacity:0.12;
+    filter: blur(0.4px) saturate(1.2);
+  }
+  /* small caption */
+  .small-muted{
+    color:var(--muted);
+    font-size:0.85rem;
+  }
+
+  /* ===========================
+     CHAT PANEL (right)
+     =========================== */
+  .panel{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    padding:12px;
+    border-radius:12px;
+    background: linear-gradient(180deg, rgba(10,20,15,0.35), rgba(8,18,14,0.55));
+    border:1px solid rgba(20,83,45,0.18);
+  }
+
+  .panel-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+  }
+  .panel-header h3{margin:0;font-size:1.05rem}
+  .panel-header p{margin:0;color:var(--muted);font-size:0.9rem}
+
+  .chat-box{
+    flex:1;
+    background: linear-gradient(180deg, rgba(7,20,13,0.12), rgba(7,20,13,0.02));
+    border-radius:12px;
+    padding:14px;
+    overflow:auto;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .msg{
+    max-width:78%;
+    padding:12px 14px;
+    border-radius:14px;
+    line-height:1.35;
+    font-size:0.96rem;
+    animation:pop .22s ease;
+    word-wrap:break-word;
+  }
+  @keyframes pop{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:scale(1)}}
+
+  .msg.user{
+    background: linear-gradient(135deg,#0ea55b,#16a34a);
+    color:white;
+    align-self:flex-end;
+    border-bottom-right-radius:6px;
+    box-shadow: 0 8px 20px rgba(16,78,38,0.18);
+  }
+  .msg.bot{
+    background: rgba(17,33,26,0.86);
+    color:var(--light);
+    align-self:flex-start;
+    border-left:4px solid var(--accent);
+  }
+
+  /* choice container */
+  .choice-container{
+    display:inline-block;
+    padding:10px;
+    background: rgba(14,34,26,0.45);
+    border-radius:12px;
+    border:1px solid rgba(20,83,45,0.18);
+  }
+  .choice-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .choice-btn{
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+    border:none;
+    padding:8px 12px;
+    border-radius:999px;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    box-shadow: 0 6px 18px rgba(16,78,38,0.16);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .choice-btn:hover{transform:translateY(-4px)}
+
+  /* input area */
+  .input-area{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    padding:8px;
+  }
+  .input-area input{
+    flex:1;
+    padding:12px 14px;
+    border-radius:12px;
+    border:1px solid rgba(20,83,45,0.18);
+    background: rgba(10,25,20,0.7);
+    color:var(--light);
+    outline:none;
+    font-size:1rem;
+  }
+  .input-area button{
+    background:linear-gradient(135deg,#16a34a,#10b981);
+    color:white;
+    border:none;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+  }
+
+  /* typing indicator */
+  .typing{
+    display:inline-flex;
+    gap:6px;
+    align-items:center;
+  }
+  .dot{
+    width:8px;height:8px;border-radius:50%;background:var(--muted);opacity:0.9; transform: translateY(0);
+    animation: bounce 1s infinite;
+  }
+  .dot:nth-child(2){animation-delay:.15s}
+  .dot:nth-child(3){animation-delay:.3s}
+  @keyframes bounce{
+    0%{transform: translateY(0);opacity:0.6}
+    50%{transform: translateY(-6px);opacity:1}
+    100%{transform: translateY(0);opacity:0.6}
+  }
+
+  /* responsive */
+  @media (max-width:900px){
+    .chat-app{grid-template-columns:1fr; height:92vh; max-width:420px}
+    .robot-wrap{display:none}
+  }
+   /*=======================================================================================================================================*/
+.dot {
+  animation: bounce 1s infinite cubic-bezier(.25,.1,.25,1);
+}
+.dot:nth-child(2){ animation-delay: 0.2s; }
+.dot:nth-child(3){ animation-delay: 0.4s; }
+
+
+.choice-btn, .chip {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.choice-btn:active, .chip:active {
+  transform: scale(0.95);
+  box-shadow: 0 4px 12px rgba(16,78,38,0.2);
+}
+
+
+@keyframes floatRobot {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(3deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+.robot-wrap {
+  animation: floatRobot 4s ease-in-out infinite;
+}
+
+
+    @keyframes slideFadeIn {
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.msg {
+  animation: slideFadeIn 0.3s ease forwards;
+}
+
+
+   .msg.bot { animation: pop 0.22s ease; animation-delay: calc(var(--i) * 0.05s);}
+
+  @media (max-width:600px){
+  .chat-app { grid-template-columns:1fr; height:100vh; padding:10px; }
+  .sidebar { position:absolute; top:0; left:-100%; width:80%; z-index:10; transition:0.3s; }
+  .sidebar.active { left:0; }
+  .robot-wrap { display:none; }
+  .choice-btn { font-size:1rem; padding:12px 16px; }
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="chat-app">
+
+    <!-- LEFT: Sidebar / Menu / Robot -->
+    <div class="sidebar">
+      <div class="brand">
+        <div class="logo">B</div>
+        <div>
+          <h2>Breath — Gazona</h2>
+          <p>Votre guide jungle</p>
+        </div>
+      </div>
+
+      <div class="intro">
+        Bonjour, je suis <strong>Gazona</strong>. Je vous aide à choisir un trip, estimer un prix ou finaliser la réservation.  
+        Cliquez sur une suggestion ci-dessous ou écrivez votre question.
+      </div>
+
+      <div class="chips" id="suggestion-chips">
+        <div class="chip" data-suggest="destinations">🌍 Destinations</div>
+        <div class="chip" data-suggest="prix">💸 Prix & promos</div>
+        <div class="chip" data-suggest="paiement">💳 Paiement sécurisé</div>
+        <div class="chip" data-suggest="groupe">👥 Rejoindre/créer groupe</div>
+        <div class="chip" data-suggest="checklist">🎒 Checklist rando</div>
+      </div>
+
+      <div class="menu" aria-hidden="false">
+        <div class="menu-btn" id="open-menu">📋 Ouvrir le menu professionnel</div>
+        <div class="small-muted">Raccourcis rapides</div>
+        <div class="menu" style="margin-top:8px;">
+          <div class="menu-btn" data-action="dest">🌍 Destinations</div>
+          <div class="menu-btn" data-action="price">💸 Prix & Budget</div>
+          <div class="menu-btn" data-action="pay">💳 Paiement</div>
+          <div class="menu-btn" data-action="group">👥 Groupes</div>
+        </div>
+      </div>
+
+      <!-- robot svg animated (design subtle) -->
+      <div class="robot-wrap" aria-hidden="true">
+        <!-- small ornamental robot / typing -->
+        <svg viewBox="0 0 100 100" width="160" height="160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(10,6)">
+            <rect x="10" y="16" rx="8" ry="8" width="64" height="52" fill="#0b3f2b" stroke="#16a34a" stroke-width="2"/>
+            <circle cx="26" cy="36" r="4" fill="#16a34a"/>
+            <rect x="40" y="30" width="18" height="12" rx="2" fill="#113522"/>
+            <rect x="30" y="6" width="34" height="8" rx="4" fill="#0f3f2a"/>
+            <g transform="translate(18,68)">
+              <rect width="8" height="6" rx="1" fill="#083022"/>
+              <rect x="24" width="8" height="6" rx="1" fill="#083022"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- RIGHT: chat panel -->
+    <div class="panel">
+      <div class="panel-header">
+        <div>
+          <h3>Gazona — Assistant IA</h3>
+          <p>Posez vos questions ou utilisez le menu. ⤵</p>
+        </div>
+        <div>
+          <button id="btn-open-menu" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--light);padding:8px 10px;border-radius:8px;cursor:pointer">Menu</button>
+        </div>
+      </div>
+
+      <div class="chat-box" id="chat-box">
+        <!-- initial welcome message from bot (auto) -->
+      </div>
+
+      <div class="input-area">
+        <input id="user-input" placeholder="Écrivez votre question ici... (ex: 'prix Ifrane 4 personnes')" autocomplete="off" />
+        <button id="send-btn">Envoyer</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  /****************************************
+   *  Gazona — Local Smart Chat (All-in-one)
+   *  - choices menu
+   *  - kb (patterns -> replies)
+   *  - typing animation + simulate user message on button click
+   ****************************************/
+
+  // --------------------------
+  // UTIL: add message helper
+  // --------------------------
+  const chatBox = document.getElementById('chat-box');
+
+  function addMessage(text, who = 'bot', opts = {}) {
+    const d = document.createElement('div'); // ⚠ créer l'élément avant de l'utiliser
+    d.className = 'msg ' + (who === 'user' ? 'user' : 'bot');
+
+    if (opts.html) d.innerHTML = text;
+    else d.textContent = text;
+
+    chatBox.appendChild(d);
+    scrollToBottom(); // smooth scroll vers dernier message
+    return d;
+}
+
+function addTypingIndicator() {
+    const wrap = document.createElement('div');
+    wrap.className = 'msg bot';
+    wrap.innerHTML = '<div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+    chatBox.appendChild(wrap);
+    scrollToBottom();
+    return wrap;
+}
+
+
+  // --------------------------
+  // KB: patterns => replies (improved)
+  // --------------------------
+  const kb = [
+    { patterns: ['bonjour','salut','slt','hello','coucou','hey'], replies: ["Bonjour 👋 je suis <strong>Gazona</strong> — ton guide Breath. Que veux-tu faire aujourd'hui ?", "Salut ! Je peux t'aider à choisir une destination, estimer le prix ou t'accompagner jusqu'au paiement."] },
+    { patterns: ['prix','tarif','combien','coût','budget'], replies: ["Les prix commencent autour de 199-349 DH selon la formule. Donne la destination + nb personnes pour une estimation précise.", "Je peux estimer le prix si tu me dis la destination et le nombre de personnes (ex: Ifrane, 4)."] },
+    { patterns: ['destination','où aller','ville','places','endroit'], replies: ["Nous avons : Ifrane, Akchour, Ouzoud, Chefchaouen, Agadir, Sahara. Tu préfères montagne, mer, désert ou ville ?", "Préférence: montagne / mer / désert / ville ? Je te propose des options."] },
+    { patterns: ['paiement','payer','carte','payment','checkout'], replies: ["Le paiement est sécurisé 💳. Nous acceptons carte bancaire, virement et paiement mobile.", "Sur la page Paiement, entre tes infos puis confirme ; besoin d'aide pour payer ?"] },
+    { patterns: ['groupe','rejoindre','créer groupe','friends','amis'], replies: ["Tu peux créer un groupe ou rejoindre un groupe existant. Dis-moi le nombre de personnes et la date.", "Groupes: mixtes, 100% filles ou solo-friendly — que préfères-tu ?"] },
+    { patterns: ['matériel','sac','packing','checklist','equipement','hiking'], replies: ["Checklist: sac 30L, powerbank, veste imperméable, chaussures, lampe frontale, eau, snacks, trousse de secours.", "Tu veux la checklist complète pour une destination précise ? (ex: montagne)"] },
+    { patterns: [' météo','climat','froid','chaud','temps'], replies: ["Donne la destination et je te dirai la météo type et quoi prendre.", "Conseil: prévoir une couche chaude si c'est la montagne — même l'été la nuit peut être froide."] },
+    { patterns: ['secret','endroits cachés','secret spots','hidden'], replies: ["On a des spots secrets autour d'Akchour et Chefchaouen — cascades et viewpoints magiques.", "Souhaites-tu voir nos 'secret places' par région ?"] },
+    { patterns: ['aide','comment','fonctionne','help'], replies: ["Processus : 1) Choisir destination 2) Rejoindre/créer groupe 3) Paiement 4) Confirmation 5) Départ.", "Je peux t'accompagner étape par étape — dis quelle étape tu veux maintenant."] }
+  ];
+
+  function findReply(message) {
+    const txt = message.toLowerCase();
+    for (const item of kb) {
+      for (const p of item.patterns) {
+        if (txt.includes(p.trim())) {
+          // return random reply
+          const r = item.replies;
+          return r[Math.floor(Math.random()*r.length)];
+        }
+      }
+    }
+    return null;
+  }
+
+  // --------------------------
+  // CHOICES / TREE (for menu)
+  // --------------------------
+  const CHOICES = {
+    root: {
+      text: "Choisis une catégorie :",
+      options: [
+        { id: 'dest', label: '🌍 Destinations' },
+        { id: 'price', label: '💸 Prix & promos' },
+        { id: 'pay', label: '💳 Paiement' },
+        { id: 'group', label: '👥 Groupes' },
+        { id: 'pack', label: '🎒 Checklist' },
+        { id: 'ideas', label: '💡 Idées créatives' }
+      ]
+    },
+    dest: {
+      reply: "Quel type de destination préfères-tu ?",
+      options: [
+        { id:'dest_mountain', label:'⛰️ Montagne' },
+        { id:'dest_sea', label:'🏖 Mer' },
+        { id:'dest_desert', label:'🏜 Désert' },
+        { id:'dest_city', label:'🏙 Ville' },
+        { id:'back', label:'🔙 Menu principal' }
+      ]
+    },
+    dest_mountain: {
+      reply: "Top montagnes : Ifrane, Akchour, Oukaïmeden. Que veux-tu ?",
+      options: [
+        { id:'detail_ifr', label:'📄 Détails Ifrane' },
+        { id:'price_ifr', label:'💸 Prix Ifrane' },
+        { id:'back_dest', label:'🔙 Retour Destinations' }
+      ]
+    },
+    price: {
+      reply: "Estimer un prix ? Dis-moi la destination + nb personnes ou choisis une option.",
+      options: [
+        { id:'estimate', label:'🧮 Estimer le prix' },
+        { id:'promos', label:'🔖 Voir promos' },
+        { id:'back', label:'🔙 Menu principal' }
+      ]
+    },
+    pay: {
+      reply: "Paiement sécurisé. Que souhaites-tu savoir ?",
+      options:[
+        { id:'methods', label:'💳 Méthodes' },
+        { id:'help_pay', label:'❓ Aide paiement' },
+        { id:'back', label:'🔙 Menu principal' }
+      ]
+    },
+    group: {
+      reply: "Rejoindre ou créer un groupe ?",
+      options:[
+        { id:'join', label:'🔎 Rejoindre un groupe' },
+        { id:'create', label:'➕ Créer un groupe' },
+        { id:'back', label:'🔙 Menu principal' }
+      ]
+    },
+    pack: {
+      reply: "Checklist rapide: sac 30L, powerbank, veste, chaussures, snacks. Voulez la checklist complète ?",
+      options:[
+        { id:'full_pack', label:'✅ Checklist complète' },
+        { id:'tips', label:'🧭 Conseils packing' },
+        { id:'back', label:'🔙 Menu principal' }
+      ]
+    },
+    ideas: {
+      reply: "Idées créatives : Trip surprise, Trip photo, Sunrise trip. Tu veux une recommandation ?",
+      options:[
+        { id:'surprise', label:'🎁 Trip surprise' },
+        { id:'photo', label:'📸 Trip photo' },
+        { id:'back', label:'🔙 Menu principal' }
+      ]
+    },
+
+    // leaves / actions
+    detail_ifr: { reply: "Ifrane: forêts, climat doux, idéal 2-3 jours. Activités: rando, viewpoint, cuisine locale." },
+    price_ifr: { reply: "Prix Ifrane: à partir de 299 DH / pers (selon formule)." },
+    methods: { reply: "Méthodes: Carte bancaire, virement, paiement mobile." },
+    help_pay: { reply: "Pour un problème de paiement, contacte le support via WhatsApp: +212 6X XX XX XX" },
+    join: { reply: "Indique ta ville et date; je cherche un groupe proche." },
+    create: { reply: "Donne le nom du groupe, date et nombre de places; je crée le lien d'invitation." },
+    full_pack: { reply: "Checklist complète: vêtements, couche chaude, trousse santé, powerbank, chaussures confortables, lampe, snacks, documents." },
+    tips: { reply: "Astuce: garde eau + papiers dans la poche, range lourd en bas du sac, protège tes affaires de la pluie." },
+    estimate: { reply: "Pour estimer: exemple -> 'Ifrane, 4 personnes'. Écris ici ta destination et nombre." },
+    promos: { reply: "Promo actuelle: -10% sur certaines destinations le weekend. Veux la liste ?" },
+    surprise: { reply: "Trip surprise: choisis la date, on garde la destination secrète jusqu'au départ 🎁." },
+    photo: { reply: "Trip photo: on te guide sur les golden hours et viewpoints pour de belles images 📸." },
+
+    back: { reply: "Retour au menu principal.", redirect: 'root' },
+    back_dest: { reply: "Retour aux destinations.", redirect: 'dest' }
+  };
+
+  // --------------------------
+  // RENDER CHOICES
+  // --------------------------
+  function renderChoices(opts){
+    const container = document.createElement('div');
+    container.className = 'choice-container';
+    const group = document.createElement('div');
+    group.className = 'choice-group';
+
+    opts.forEach(o=>{
+      const btn = document.createElement('button');
+      btn.className = 'choice-btn';
+      btn.textContent = o.label;
+      btn.dataset.id = o.id;
+      btn.addEventListener('click', ()=> {
+        // Simulate user sending that option as a message
+        simulateUserMessage(o.label, o.id);
+      });
+      group.appendChild(btn);
+    });
+
+    container.appendChild(group);
+    // append as a bot message
+    const wrapper = document.createElement('div');
+    wrapper.className = 'msg bot choice-wrapper';
+    wrapper.appendChild(container);
+    chatBox.appendChild(wrapper);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  function showMenuRoot(){
+    addMessage(CHOICES.root.text, 'bot', { html:false });
+    renderChoices(CHOICES.root.options);
+  }
+
+  // --------------------------
+  // simulate user click message
+  // --------------------------
+  function simulateUserMessage(label, choiceId){
+
+setTimeout(()=> scrollToBottom(), 100);
+
+
+    // add user-like message (but not editable)
+    addMessage(label, 'user');
+    // small delay then handle choice
+    setTimeout(()=> handleChoice(choiceId), 450);
+  }
+
+  // --------------------------
+  // handle choice click logic
+  // --------------------------
+  function handleChoice(choiceId){
+    const node = CHOICES[choiceId];
+    if (!node) {
+        addMessage("Désolé, je ne connais pas cette option. Voici le menu principal.", 'bot');
+        setTimeout(showMenuRoot, 300);
+        return;
+    }
+
+    if (node.reply) addMessage(node.reply, 'bot');
+
+    if (node.options) {
+        setTimeout(()=> renderChoices(node.options), 300);
+    }
+
+    if (node.redirect) {
+        setTimeout(()=> {
+            if (node.redirect === 'root') showMenuRoot();
+            else handleChoice(node.redirect);
+        }, 400);
+    }
+}
+
+
+  // --------------------------
+  // MAIN: send message (from input)
+  // --------------------------
+  const sendBtn = document.getElementById('send-btn');
+  const inputEl = document.getElementById('user-input');
+
+  sendBtn.addEventListener('click', onSend);
+  inputEl.addEventListener('keypress', (e)=> {
+    if (e.key === 'Enter') onSend();
+  });
+
+  function scrollToBottom() {
+  // utiliser requestAnimationFrame pour attendre le rendu
+  requestAnimationFrame(() => {
+    chatBox.scrollTo({
+      top: chatBox.scrollHeight,
+      behavior: 'smooth'
+    });
+  });
+}
+  function onSend(){
+
+setTimeout(()=> scrollToBottom(), 100);
+
+
+    const text = inputEl.value.trim();
+    if (!text) return;
+    // show user message
+    addMessage(text, 'user');
+    inputEl.value = '';
+    // bot typing
+    const t = addTypingIndicator();
+
+    setTimeout(()=>{
+      t.remove();
+      // try to find a reply with KB
+      const reply = findReply(text);
+      if (reply) {
+        // show reply
+        addMessage(reply, 'bot', { html:true });
+      } else {
+        // not understood -> propose menu/help
+        addMessage("Je n'ai pas bien compris 😅. Voici quelques options pour t'aider :", 'bot');
+        showMenuRoot();
+      }
+    }, 700 + Math.random()*600);
+  }
+
+  // --------------------------
+  // SUGGESTION CHIPS / MENU BTN interaction
+  // --------------------------
+  document.querySelectorAll('.chip').forEach(ch=>{
+    ch.addEventListener('click', ()=> {
+      const key = ch.dataset.suggest;
+      // simulate user message
+      simulateUserMessage(ch.textContent, key);
+    });
+  });
+
+  // sidebar menu open
+  document.getElementById('open-menu').addEventListener('click', ()=> {
+    showMenuRoot();
+  });
+
+  // top panel menu button open
+  document.getElementById('btn-open-menu').addEventListener('click', ()=> showMenuRoot());
+
+  // also allow keyboard "/" to open menu
+  document.addEventListener('keydown', (e)=>{
+    if (e.key === '/') showMenuRoot();
+  });
+
+  // --------------------------
+  // INITIAL WELCOME with suggestions
+  // --------------------------
+  window.addEventListener('load', ()=> {
+    setTimeout(()=>{
+      addMessage("Bonjour 👋 Je suis <strong>Gazona</strong>, ton guide Breath. Tu peux cliquer sur une suggestion ci-contre ou écrire ta question.", 'bot', { html:true });
+      // initial small choice list
+      setTimeout(()=> {
+        renderChoices([
+          { id:'dest', label:'🌍 Destinations' },
+          { id:'price', label:'💸 Prix & promos' },
+          { id:'pack', label:'🎒 Checklist' }
+        ]);
+      }, 350);
+    }, 600);
+  });
+  //////////////////////-----------------------------
+    // EXTEND KB with more patterns/replies (creative ideas)
+kb.push(
+  { patterns: ['photo', 'photographie', 'shoot'], replies: [
+      "Envie d'un trip photo 📸 ? Je peux te proposer les meilleurs spots selon la lumière et le timing.",
+      "Conseil: sunrise & golden hour = photos magiques !"
+  ]},
+  { patterns: ['surprise', 'secret', 'mystère'], replies: [
+      "Trip surprise 🎁 : choisis une date et je garde la destination secrète jusqu'au départ.",
+      "Secret spots 🌿 : cascades cachées et viewpoints exclusifs."
+  ]},
+  { patterns: ['famille','enfants'], replies: [
+      "Voyage famille 👨‍👩‍👧 : destinations adaptées aux enfants et activités sûres.",
+      "Astuce : choisir un logement proche des activités et facile d’accès."
+  ]},
+  { patterns: ['aventure','rando','trek'], replies: [
+      "Trip aventure 🏞 : rando, kayak, VTT. Prévois ton équipement selon la saison.",
+      "Je peux te générer une checklist spéciale aventure si tu veux !"
+  ]}
+);
+//scrol
+
+
+  // --------------------------
+  // Optional: expose some methods to console for debugging
+  // --------------------------
+  window.Gazona = {
+    showMenuRoot,
+    simulateUserMessage,
+    addMessage
+  };
+  </script>
+</body>
+</html>
