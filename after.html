@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./after.css">
+    
+</head>
+<body>
+  
+  <input type="radio" name="slide" id="slide1-btn">
+  <input type="radio" name="slide" id="slide2-btn">
+  <input type="radio" name="slide" id="slide3-btn">
+  <input type="radio" name="slide" id="slide4-btn">
+  <input type="radio" name="slide" id="slide5-btn">
+
+  
+  <div class="menu">
+    <div class="first">
+      <label for="slide1-btn" onclick="document.getElementById('home').scrollIntoView({behavior:'smooth'})">Accueil</label>
+      <label for="slide2-btn" onclick="document.getElementById('join').scrollIntoView({behavior:'smooth'})">Join a Trip</label>
+      <label for="slide3-btn" onclick="document.getElementById('create').scrollIntoView({behavior:'smooth'})">Create Your Own Trip</label>
+      <label for="slide4-btn" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop</label>
+    </div>
+    <div class="second">
+      <label for="slide5-btn" class="special" onclick="document.getElementById('profile').scrollIntoView({behavior:'smooth'})">P</label>
+    </div>
+  </div>
+
+  
+  <section id="home">
+    <div class="first">
+        <div class="left">
+
+        <h1>Welcome to <span class="highlight">Breath</span> <img src="assets/icone.png" alt="logo" class="logo"></h1>
+        <p>Explore the world at your own pace with Breath. Whether you want to join planned adventures or create your own trips, we’re here to make every moment unforgettable.</p>
+
+
+         </div>
+
+         <div class="photo-stack">
+  <img src="assets/trav2.jpg" alt="Photo 1">
+  <img src="assets/camps.jpg" alt="Photo 2">
+  <img src="assets/travv.jpg" alt="Photo 3">
+</div>
+  
+    
+
+    </div>
+
+
+
+
+
+
+  </section>
+  <section id="join">
+
+
+        
+        <div class="text">
+            <h1>Find Your Next Adventure</h1>
+            <button class="btt">view more -></button>
+
+            <div class="search-bar">
+  <input type="text" placeholder="Search location...">
+  <button><img src="https://cdn-icons-png.flaticon.com/512/54/54481.png" alt="search icon"></button>
+</div>
+        </div>
+        <div class="destination-container">
+
+            
+    <div class="destination-card">
+
+
+        <img src="assets/t4.jpg" alt="Mountains">
+        <div class="plant-overlay"></div>
+        <div class="destination-content">
+            <h2>Toubkal Mountains - Morocco</h2>
+            <p>6/9 people signed up — 3 spots left!</p>
+            <a href="#" class="travel-btn">Contact us</a>
+        </div>
+    </div>
+
+    <div class="destination-card">
+            
+        <img src="assets/t1.jpg" alt="Beach">
+        <div class="plant-overlay"></div>
+        <div class="destination-content">
+            <h2>Maamora forest</h2>
+            <p>4/6 people signed up — 2 spots left!</p>
+            <a href="#" class="travel-btn">Contact us</a>
+        </div>
+    </div>
+
+    <div class="destination-card">
+        <img src="assets/t2.jpg" alt="Forest">
+        <div class="plant-overlay"></div>
+        <div class="destination-content">
+            <h2>Enchanted Forest</h2>
+            <p>3/5 people signed up — 2 spots left!</p>
+            <a href="#" class="travel-btn">Contact us</a>
+        </div>
+    </div>
+
+    <div class="destination-card">
+        <img src="assets/t3.jpg" alt="River">
+        <div class="plant-overlay"></div>
+        <div class="destination-content">
+            <h2>Calm River</h2>
+            <p>5/8 people signed up — 3 spots left!</p>
+            <a href="#" class="travel-btn">Contact us</a>
+        </div>
+    </div>
+
+    <div class="destination-card">
+        
+        <img src="assets/t5.jpg" alt="Desert">
+        <div class="plant-overlay"></div>
+        <div class="destination-content">
+            <h2>Golden Desert</h2>
+            <p>2/6 people signed up — 4 spots left!</p>
+            <a href="#" class="travel-btn">Contact us</a>
+        </div>
+    </div>
+
+    <div class="destination-card">
+        <img src="assets/travel8.jpg" alt="Lake">
+        <div class="plant-overlay"></div>
+        <div class="destination-content">
+            <h2>Peaceful Lake</h2>
+            <p>7/9 people signed up — 2 spots left!</p>
+            <a href="#" class="travel-btn">Contact us</a>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+
+
+
+
+
+  </section>
+
+
+
+  <section id="create">
+
+    <div class="create-trip-section">
+  <h1>Want to create your own group trip?</h1>
+  <p>Design your perfect adventure and invite others to join your journey.</p>
+  <button class="create-btn">Create My Trip</button>
+</div>
+
+
+
+
+  </section>
+
+
+
+
+  <section id="shop">
+    <div id="shop">
+  <h1 class="shop-title">Discover Our Travel Essentials</h1>
+  
+  <div class="shop-container">
+    <div class="shop-card">
+      <img src="assets/chekara.jpg" alt="Travel Backpack">
+      <h2>Adventure Backpack</h2>
+      <p class="price">$79.99</p>
+      <button class="buy-btn">Add to Cart</button>
+    </div>
+
+    <div class="shop-card">
+      <img src="assets/botle.jpg" alt="Water Bottle">
+      <h2>Eco Water Bottle</h2>
+      <p class="price">$24.50</p>
+      <button class="buy-btn">Add to Cart</button>
+    </div>
+
+    <div class="shop-card">
+      <img src="assets/camera.jpg" alt="Camera">
+      <h2>Travel Camera</h2>
+      <p class="price">$249.99</p>
+      <button class="buy-btn">Add to Cart</button>
+    </div>
+
+    <div class="shop-card">
+      <img src="assets/sungl.jpg" alt="Sunglasses">
+      <h2>Explorer Sunglasses</h2>
+      <p class="price">$39.90</p>
+      <button class="buy-btn">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+
+  </section>
+  <section id="profile">
+
+
+
+    <div id="offers">
+  <h1 class="offers-title">What We Offer You</h1>
+  <p class="offers-subtitle">
+    At <span>Breath</span>, we make your adventures effortless, safe, and unforgettable.
+  </p>
+
+  <div class="offers-container">
+    <div class="offer-card">
+      
+      <h2>Expert Local Guides</h2>
+      <p>Our certified guides help you discover hidden gems and authentic experiences with safety and passion.</p>
+    </div>
+
+    <div class="offer-card">
+      
+      <h2>Top Safety Standards</h2>
+      <p>Your peace of mind matters — from equipment to routes, we ensure your trip is 100% secure.</p>
+    </div>
+
+    <div class="offer-card">
+      
+      <h2>Friendly Community</h2>
+      <p>Join a community of travelers who share your curiosity, your energy, and your love for adventure.</p>
+    </div>
+
+    <div class="offer-card">
+      
+      <h2>24/7 Support</h2>
+      <p>Our support team is always by your side, before, during, and after your trip.</p>
+    </div>
+  </div>
+</div>
+
+  </section>
+
+    
+
+</body>
+</html>

@@ -1,18 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./login.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion</title>
+  <link rel="stylesheet" href="./login.css">
+  <!-- On charge Firebase depuis register.js -->
+  <script type="module" src="./register.js" defer></script>
 </head>
 <body>
- <div class="login-container">
+  <div class="login-container">
     <h2>Connexion</h2>
     <form id="loginForm">
       <div class="input-group">
         <input type="text" required placeholder=" " id="username">
-        <label for="username">Nom d'utilisateur</label>
+        <label for="username">Email</label>
       </div>
       <div class="input-group">
         <input type="password" required placeholder=" " id="password">
@@ -20,32 +22,10 @@
       </div>
       <button type="submit" class="btn">Se connecter</button>
       <div class="signup-link">
-        Pas encore de compte ? <a href="#">S'inscrire</a>
+        Pas encore de compte ? <a href="signup.html">S'inscrire</a>
       </div>
       <div id="message" style="margin-top:15px;color:#ffcccc;"></div>
     </form>
   </div>
-
-  <script>
-    //
-    const form = document.getElementById('loginForm');
-    const messageDiv = document.getElementById('message');
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault(); 
-
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value.trim();
-
-      if(username === '' || password === '') {
-        messageDiv.textContent = 'Veuillez remplir tous les champs !';
-        messageDiv.style.color = '#ff4d4d';
-      } else {
-        messageDiv.textContent = 'Connexion réussie !';
-        messageDiv.style.color = '#6ae7b3';
-        // un vrai appel API pour vérifier le login
-      }
-    });
-  </script>
 </body>
 </html>
